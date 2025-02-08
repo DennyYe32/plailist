@@ -23,6 +23,7 @@ export default function InputBar() {
 
       const data = await response.json();
       console.log(data);
+      setInput("");
     } catch (error) {
       console.error("Error generating playlist: ", error);
     }
@@ -66,12 +67,14 @@ export default function InputBar() {
           marginLeft: "15px", // Space between input box and icon
         }}
       >
-        <Image
-          src="/guitar-icon.png"
-          alt="Guitar Icon"
-          width={30}
-          height={30}
-        />
+        <Link href={"/generate-playlist"}>
+          <Image
+            src="/guitar-icon.png"
+            alt="Guitar Icon"
+            width={30}
+            height={30}
+          />
+        </Link>
       </button>
     </div>
   );

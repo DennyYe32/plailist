@@ -16,8 +16,8 @@ export async function POST(req: Request) {
       );
     }
     const response = await openai.completions.create({
-      model: "gpt-3.5-turbo",
-      prompt: `Generate a 25 song playlist based on the following keywords: ${prompt}`,
+      model: "gpt-3.5-turbo-instruct",
+      prompt: `Generate a 10 song playlist based on the following keywords: ${prompt}`,
       max_tokens: 256,
     });
 
