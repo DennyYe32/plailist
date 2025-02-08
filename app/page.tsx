@@ -208,9 +208,10 @@ export default function Home() {
           justifyContent: "center",
           color: "white",
           textAlign: "center",
+          fontFamily: "sans-serif",
         }}
       >
-        <h1>
+        <h1 className='afacadFlux'>
           plAIlist
           <br />
           Time to curate the best playlist of your life.
@@ -230,7 +231,7 @@ export default function Home() {
           textAlign: "center",
         }}
       >
-        <h1>
+        <h1 className='afacadFlux'>
           Describe what type of music you're interested in.
           <br />
           Play the guitar to generate.

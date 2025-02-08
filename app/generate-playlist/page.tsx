@@ -81,7 +81,7 @@ export default function Home() {
           textAlign: "center",
         }}
       >
-        <h1>
+        <h1 className='afacadFlux'>
           Here's ur damn playlist
           <br />
           I'm so sleepy.
@@ -101,7 +101,7 @@ export default function Home() {
           textAlign: "center",
         }}
       >
-        <h1>would u like to bring it to spotify -,-
+        <h1 className='afacadFlux'>would u like to bring it to spotify -,-
           <br/>
           Play the guitar.
         </h1>
