@@ -1,6 +1,9 @@
 import OpenAI from "openai";
 import { NextResponse } from "next/server";
 
+/**
+ *  Majority of source code altered from OpenAI documentation pages.
+ */
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -17,7 +20,7 @@ export async function POST(req: Request) {
     }
     const response = await openai.completions.create({
       model: "gpt-3.5-turbo-instruct",
-      prompt: `Generate a 5 song playlist based on the following keywords: ${prompt}`,
+      prompt: `Generate a 5 song playlist with only the song title and author based on the following keywords: ${prompt}`,
       max_tokens: 256,
     });
 

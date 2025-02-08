@@ -5,7 +5,6 @@ import * as THREE from "three";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
-import Playlist from "../components/Playlist";
 
 export default function Home() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);

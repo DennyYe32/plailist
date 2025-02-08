@@ -5,12 +5,35 @@ import * as THREE from "three";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
-import InputBar from "./components/InputBar";
-import Playlist from "./components/Playlist";
+import Image from "next/image";
 
 export default function Home() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const threeContainerRef = useRef<HTMLDivElement>(null);
+  const [input, setInput] = useState("");
+  const [playlist, setPlaylist] = useState<any>(null);
+
+  const createPlaylist = async () => {
+    // Checks if the input is empty
+    if (!input) {
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/create-playlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: input }),
+      });
+
+      const data = await response.json();
+      console.log(data);
+      setPlaylist(data);
+      setInput("");
+    } catch (error) {
+      console.error("Error generating playlist: ", error);
+    }
+  };
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -223,7 +246,7 @@ export default function Home() {
       <div
         className="section"
         style={{
-          minHeight: "150vh",
+          minHeight: "100vh",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -237,11 +260,75 @@ export default function Home() {
           <br />
           Play the guitar to generate.
         </h1>
-
         {/* Chat Box Input */}
-        <InputBar />
+        <div
+          style={{
+            marginTop: "20px",
+            backgroundColor: "#fff",
+            padding: "4px 20px",
+            borderRadius: "20px",
+            display: "flex",
+            alignItems: "center",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)",
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Enter keywords..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            style={{
+              color: "#48484c",
+              border: "none",
+              outline: "none",
+              fontSize: "16px",
+              width: "200px",
+              padding: "8px",
+              borderRadius: "20px",
+            }}
+          />
+
+          {/* Guitar Icon as a Link */}
+          <button
+            onClick={createPlaylist}
+            style={{
+              cursor: "pointer",
+              width: "30px",
+              height: "30px",
+              marginLeft: "15px", // Space between input box and icon
+              marginBottom: "10px",
+            }}
+          >
+            <Image
+              src="/guitar-icon.png"
+              alt="Guitar Icon"
+              width={30}
+              height={30}
+            />
+          </button>
+        </div>
+
+        {/*Display Playlist*/}
+        <div className="afacadFlux">
+          {playlist && (
+            <div style={{ marginTop: "20px" }}>
+              <h1 className="justify-items-center">Generated Playlist</h1>
+              <ul className="text-left">
+                {playlist.playlist
+                  .split("\n")
+                  .map((song: string, index: number) => (
+                    <li key={index}>{song}</li>
+                  ))}
+              </ul>
+              <div>
+                <h1 className="afacadFlux mt-20">
+                  Would You Like to Import This Playlist into Spotify?
+                </h1>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-      <Playlist playlist={Playlist} />
     </div>
   );
 }
