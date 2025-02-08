@@ -7,6 +7,7 @@ import { auto } from "openai/_shims/registry.mjs";
 
 export default function InputBar() {
   const [input, setInput] = useState("");
+  const [playlist, setPlaylist] = useState<any>(null);
 
   const createPlaylist = async () => {
     // Checks if the input is empty
@@ -22,6 +23,7 @@ export default function InputBar() {
       });
 
       const data = await response.json();
+      setPlaylist(data);
       console.log(data);
       setInput("");
     } catch (error) {
@@ -67,14 +69,12 @@ export default function InputBar() {
           marginLeft: "15px", // Space between input box and icon
         }}
       >
-        <Link href={"/generate-playlist"}>
-          <Image
-            src="/guitar-icon.png"
-            alt="Guitar Icon"
-            width={30}
-            height={30}
-          />
-        </Link>
+        <Image
+          src="/guitar-icon.png"
+          alt="Guitar Icon"
+          width={30}
+          height={30}
+        />
       </button>
     </div>
   );

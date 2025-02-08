@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import InputBar from "./components/InputBar";
+import Playlist from "./components/Playlist";
 
 export default function Home() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -211,7 +212,7 @@ export default function Home() {
           fontFamily: "sans-serif",
         }}
       >
-        <h1 className='afacadFlux'>
+        <h1 className="afacadFlux">
           plAIlist
           <br />
           Time to curate the best playlist of your life.
@@ -231,7 +232,7 @@ export default function Home() {
           textAlign: "center",
         }}
       >
-        <h1 className='afacadFlux'>
+        <h1 className="afacadFlux">
           Describe what type of music you're interested in.
           <br />
           Play the guitar to generate.
@@ -240,6 +241,7 @@ export default function Home() {
         {/* Chat Box Input */}
         <InputBar />
       </div>
+      <Playlist playlist={Playlist} />
     </div>
   );
 }

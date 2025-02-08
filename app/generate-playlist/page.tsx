@@ -5,10 +5,13 @@ import * as THREE from "three";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
+import Playlist from "../components/Playlist";
 
 export default function Home() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const threeContainerRef = useRef<HTMLDivElement>(null);
+
+  const [playlist, setPlaylist] = useState<any>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -81,7 +84,7 @@ export default function Home() {
           textAlign: "center",
         }}
       >
-        <h1 className='afacadFlux'>
+        <h1 className="afacadFlux">
           Here's ur damn playlist
           <br />
           I'm so sleepy.
@@ -101,24 +104,29 @@ export default function Home() {
           textAlign: "center",
         }}
       >
-        <h1 className='afacadFlux'>would u like to bring it to spotify -,-
-          <br/>
+        <h1 className="afacadFlux">
+          would u like to bring it to spotify -,-
+          <br />
           Play the guitar.
         </h1>
-<div> 
-  {/* Icon to Spotify link */}
-  <Link href="https://www.spotify.com" target="_blank" rel="noopener noreferrer">
-    <img
-      src="/guitar-icon.png"
-      alt="Guitar Icon"
-      style={{
-        cursor: "pointer",
-        width: "30px",
-        height: "30px",
-      }}
-    />
-  </Link>
-</div>
+        <div>
+          {/* Icon to Spotify link */}
+          <Link
+            href="https://www.spotify.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/guitar-icon.png"
+              alt="Guitar Icon"
+              style={{
+                cursor: "pointer",
+                width: "30px",
+                height: "30px",
+              }}
+            />
+          </Link>
+        </div>
       </div>
     </div>
   );
