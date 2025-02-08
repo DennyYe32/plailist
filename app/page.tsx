@@ -5,6 +5,7 @@ import * as THREE from "three";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
+import InputBar from "./components/InputBar";
 
 export default function Home() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -42,16 +43,21 @@ export default function Home() {
     );
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    
+
     if (threeContainerRef.current) {
       threeContainerRef.current.appendChild(renderer.domElement);
     }
 
     // Cylinder Object (drum base)
     const sideMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000 });
-    const topBottomMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
+    const topBottomMaterial = new THREE.MeshStandardMaterial({
+      color: 0xffffff,
+    });
     const baseGeometry = new THREE.CylinderGeometry(1.2, 1.2, 1, 32);
-    const baseCylinder = new THREE.Mesh(baseGeometry, [sideMaterial, topBottomMaterial]);
+    const baseCylinder = new THREE.Mesh(baseGeometry, [
+      sideMaterial,
+      topBottomMaterial,
+    ]);
 
     scene.add(baseCylinder);
 
@@ -61,11 +67,25 @@ export default function Home() {
     const angleStep = (Math.PI * 2) / numCylinders;
 
     for (let i = 0; i < numCylinders; i++) {
-      const drumDetailGeometry = new THREE.CylinderGeometry(0.05, 0.05, 0.8, 32);
-      const drumDetailMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff });
-      const drumDetailCylinder = new THREE.Mesh(drumDetailGeometry, drumDetailMaterial);
+      const drumDetailGeometry = new THREE.CylinderGeometry(
+        0.05,
+        0.05,
+        0.8,
+        32
+      );
+      const drumDetailMaterial = new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+      });
+      const drumDetailCylinder = new THREE.Mesh(
+        drumDetailGeometry,
+        drumDetailMaterial
+      );
       const angle = i * angleStep;
-      drumDetailCylinder.position.set(Math.cos(angle) * radius, 0, Math.sin(angle) * radius);
+      drumDetailCylinder.position.set(
+        Math.cos(angle) * radius,
+        0,
+        Math.sin(angle) * radius
+      );
       baseCylinder.add(drumDetailCylinder);
     }
 
@@ -93,48 +113,48 @@ export default function Home() {
     // Position camera
     camera.position.z = 5;
 
-// Floating Music Notes Effect
-const textureLoader = new THREE.TextureLoader();
-const noteTexture = [
-  textureLoader.load("/music-note.png"),
-  textureLoader.load("/music-note2.png")
-];
+    // Floating Music Notes Effect
+    const textureLoader = new THREE.TextureLoader();
+    const noteTexture = [
+      textureLoader.load("/music-note.png"),
+      textureLoader.load("/music-note2.png"),
+    ];
 
-// Define the type for notes array
-interface Note {
-  sprite: THREE.Sprite;
-  speed: number;
-}
+    // Define the type for notes array
+    interface Note {
+      sprite: THREE.Sprite;
+      speed: number;
+    }
 
-const numNotes = 15;
-const notes: Note[] = []; // Explicitly define type
+    const numNotes = 15;
+    const notes: Note[] = []; // Explicitly define type
 
-for (let i = 0; i < numNotes; i++) {
-  const spriteMaterial = new THREE.SpriteMaterial({ 
-    map: noteTexture[Math.floor(Math.random() * noteTexture.length)], // Assigns a single texture
-    transparent: true 
-  });
-  const sprite = new THREE.Sprite(spriteMaterial);
-  sprite.scale.set(0.5, 0.5, 1);
+    for (let i = 0; i < numNotes; i++) {
+      const spriteMaterial = new THREE.SpriteMaterial({
+        map: noteTexture[Math.floor(Math.random() * noteTexture.length)], // Assigns a single texture
+        transparent: true,
+      });
+      const sprite = new THREE.Sprite(spriteMaterial);
+      sprite.scale.set(0.5, 0.5, 1);
 
-  sprite.position.set(
-    (Math.random() - 0.5) * 8, // Random x position
-    Math.random() * 5, // Random y position
-    (Math.random() - 0.5) * 8  // Random z position
-  );
+      sprite.position.set(
+        (Math.random() - 0.5) * 8, // Random x position
+        Math.random() * 5, // Random y position
+        (Math.random() - 0.5) * 8 // Random z position
+      );
 
-  scene.add(sprite);
-  notes.push({ sprite, speed: Math.random() * 0.005 + 0.002 });
-}
+      scene.add(sprite);
+      notes.push({ sprite, speed: Math.random() * 0.005 + 0.002 });
+    }
 
-// Animate only upwards
-const animateNotes = () => {
-  notes.forEach(({ sprite, speed }) => {
-    sprite.position.y += speed; // Move upwards
-    
-    if (sprite.position.y > 5) sprite.position.y = -2; // Reset when it gets too high
-  });
-};
+    // Animate only upwards
+    const animateNotes = () => {
+      notes.forEach(({ sprite, speed }) => {
+        sprite.position.y += speed; // Move upwards
+
+        if (sprite.position.y > 5) sprite.position.y = -2; // Reset when it gets too high
+      });
+    };
 
     // Animation Loop
     const animate = () => {
@@ -210,51 +230,14 @@ const animateNotes = () => {
           textAlign: "center",
         }}
       >
-        <h1>Describe what type of music you're interested in.
-          <br/>
+        <h1>
+          Describe what type of music you're interested in.
+          <br />
           Play the guitar to generate.
         </h1>
 
-{/* Chat Box Input */}
-<div
-  style={{
-    marginTop: "20px",
-    backgroundColor: "#fff",
-    padding: "4px 20px",
-    borderRadius: "20px",
-    display: "flex",
-    alignItems: "center",
-    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)",
-  }}
->
-  <input
-    type="text"
-    placeholder="Enter keywords..."
-    style={{
-      color: "#48484c",
-      border: "none",
-      outline: "none",
-      fontSize: "16px",
-      width: "200px",
-      padding: "8px",
-      borderRadius: "20px",
-    }}
-  />
-  
-  {/* Guitar Icon as a Link */}
-  <Link href="/generate-playlist">
-    <img
-      src="/guitar-icon.png"
-      alt="Guitar Icon"
-      style={{
-        cursor: "pointer",
-        width: "30px",
-        height: "30px",
-        marginLeft: "15px", // Space between input box and icon
-      }}
-    />
-  </Link>
-</div>
+        {/* Chat Box Input */}
+        <InputBar />
       </div>
     </div>
   );
