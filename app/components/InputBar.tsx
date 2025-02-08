@@ -1,9 +1,33 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { auto } from "openai/_shims/registry.mjs";
 
 export default function InputBar() {
+  const [input, setInput] = useState("");
+
+  const createPlaylist = async () => {
+    // Checks if the input is empty
+    if (!input) {
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/create-playlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: input }),
+      });
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error generating playlist: ", error);
+    }
+  };
+
   return (
     <div
       style={{
@@ -19,6 +43,8 @@ export default function InputBar() {
       <input
         type="text"
         placeholder="Enter keywords..."
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
         style={{
           color: "#48484c",
           border: "none",
@@ -31,18 +57,22 @@ export default function InputBar() {
       />
 
       {/* Guitar Icon as a Link */}
-      <Link href="/generate-playlist">
-        <img
+      <button
+        onClick={createPlaylist}
+        style={{
+          cursor: "pointer",
+          width: "30px",
+          height: "30px",
+          marginLeft: "15px", // Space between input box and icon
+        }}
+      >
+        <Image
           src="/guitar-icon.png"
           alt="Guitar Icon"
-          style={{
-            cursor: "pointer",
-            width: "30px",
-            height: "30px",
-            marginLeft: "15px", // Space between input box and icon
-          }}
+          width={30}
+          height={30}
         />
-      </Link>
+      </button>
     </div>
   );
 }
