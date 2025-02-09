@@ -238,7 +238,6 @@ export default function Home() {
         <h1 className="afacadFlux">
           <Image src="/logo.png" alt="Logo Icon" width={500} height={500} />
           <br />
-          Time to curate the best playlist of your life.
         </h1>
       </div>
 
@@ -246,7 +245,7 @@ export default function Home() {
       <div
         className="section"
         style={{
-          minHeight: "100vh",
+          minHeight: "50vh",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",

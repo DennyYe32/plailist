@@ -10,7 +10,7 @@ Project Title: plAIlist
 Team Members: Denny Ye, Jackson Hamilton, Katie Dao, Brendon Beltran
 Tier Level: [Intermediate]
 
-Project Description: We have created an interactive website that allows you to create a playlist of 25 songs based on the keywords provided in an input box.
+Project Description: We developed an interactive website that allows web users to create a playlist of 25 songs based on keywords that they provide. Keywords provided can range from music genres, music artists, emotions, or anything the user imagines. The keywords are then sent to the openAI API through a POST request, and a sample playlist, sent back by the openAI API, is then displayed to the user. The user is then asked if they would like to sign in to Spotify to create a new playlist based on the response provided by openAI.
 
 Public Frameworks Utilized: openAI-API, Next.js
 
@@ -90,11 +90,10 @@ Sunday
 Submissions are due at 8AM today!! Fit in your final touches for the project and make sure to check the submission checklist below to ensure you’re ready for judging!
 
     Goals:
-        Goal 1
-        Goal 2
-        Goal 3
+        Goal 1: Submit Project
 
     Progress: (Describe was accomplished)
+        We tested and submitted the project.
 
     Challenges:
         1. Challenge 1:

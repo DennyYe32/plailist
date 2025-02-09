@@ -20,8 +20,8 @@ export async function POST(req: Request) {
     }
     const response = await openai.completions.create({
       model: "gpt-3.5-turbo-instruct",
-      prompt: `Generate a 5 song playlist with only the song title and author based on the following keywords: ${prompt}`,
-      max_tokens: 256,
+      prompt: `Generate a 25 song playlist with only the song title and author based on the following keywords: ${prompt}`,
+      max_tokens: 500,
     });
 
     return NextResponse.json({ playlist: response.choices[0]?.text.trim() });
