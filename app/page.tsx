@@ -331,7 +331,7 @@ export default function Home() {
                       rel="noopener noreferrer"
                     >
                       <img
-                        src="/guitar-icon.png"
+                        src="/spotify-icon.png"
                         alt="Guitar Icon"
                         style={{
                           cursor: "pointer",
