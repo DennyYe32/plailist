@@ -12,7 +12,7 @@ Tier Level: [Intermediate]
 
 Project Description: We developed an interactive website that allows web users to create a playlist of 25 songs based on keywords that they provide. Keywords provided can range from music genres, music artists, emotions, or anything the user imagines. The keywords are then sent to the openAI API through a POST request, and a sample playlist, sent back by the openAI API, is then displayed to the user. The user is then asked if they would like to sign in to Spotify to create a new playlist based on the response provided by openAI.
 
-Public Frameworks Utilized: openAI-API, Next.js
+Public Frameworks Utilized: openAI-API, Next.js, Three.js, React, HTML, CSS, Typescript, REST-API
 
 Friday
 Welcome to UGAHacksX! We’re excited that you’re participating and revving up for an amazing weekend! Today will be short, but we advise you to settle on a project and create a plan to guide you! Already have something in mind? Now’s a great time to get started!
@@ -33,8 +33,6 @@ Welcome to UGAHacksX! We’re excited that you’re participating and revving up
     Challenges:
         1. Challenge 1: We faced a problem with the gitHub repository not publishing right.
             - Solution (if found): We used VsCode GitHub extension to publish the right files.
-        2. Challenge 2:
-            - Solution (if found):
 
 
     Learning: (List key concepts or skills learned)
@@ -94,12 +92,6 @@ Submissions are due at 8AM today!! Fit in your final touches for the project and
 
     Progress: (Describe was accomplished)
         We tested and submitted the project.
-
-    Challenges:
-        1. Challenge 1:
-            - Solution (if found):
-        2. Challenge 2:
-            - Solution (if found):
 
 
     Learning: (List key concepts or skills learned)
