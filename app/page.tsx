@@ -323,25 +323,25 @@ export default function Home() {
               <div>
                 <h1 className="afacadFlux mt-20">
                   Would You Like to Import This Playlist into Spotify?
+                  <div>
+                    {/* Icon to Spotify link */}
+                    <Link
+                      href="https://www.spotify.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src="/guitar-icon.png"
+                        alt="Guitar Icon"
+                        style={{
+                          cursor: "pointer",
+                          width: "30px",
+                          height: "30px",
+                        }}
+                      />
+                    </Link>
+                  </div>
                 </h1>
-                <div className="justify-items-center">
-                  {/* Icon to Spotify link */}
-                  <Link
-                    href="https://www.spotify.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src="/guitar-icon.png"
-                      alt="Guitar Icon"
-                      style={{
-                        cursor: "pointer",
-                        width: "30px",
-                        height: "30px",
-                      }}
-                    />
-                  </Link>
-                </div>
               </div>
             </div>
           )}
