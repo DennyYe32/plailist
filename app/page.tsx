@@ -236,7 +236,7 @@ export default function Home() {
         }}
       >
         <h1 className="afacadFlux">
-          plAIlist
+          <Image src="/logo.png" alt="Logo Icon" width={500} height={500} />
           <br />
           Time to curate the best playlist of your life.
         </h1>
